@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="Nirvana — thoughtfully chosen essentials for a more beautiful everyday.">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Nirvana — ভালো থাকার প্রতিদিন</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #202821;
+      --muted: #737b72;
+      --green: #355d45;
+      --green-dark: #244531;
+      --lime: #d7ed9b;
+      --cream: #f7f5f0;
+      --white: #fffefa;
+      --line: #e8e7df;
+      --peach: #f3cdb8;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "DM Sans", "Hind Siliguri", sans-serif;
+      --shadow: 0 18px 55px rgba(37, 55, 39, .09);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; color: var(--ink); background: linear-gradient(135deg, #f8f6f1 0%, #f3f5ed 48%, #fbf3ed 100%); font-family: var(--sans); }
+    body, button, a { -webkit-tap-highlight-color: transparent; }
+    button, a { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+    img { display: block; width: 100%; }
+    .container { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow { color: var(--green); font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .section { padding: 92px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 36px; }
+    .section-head h2, .center-head h2 { margin: 9px 0 0; font: 500 clamp(2rem, 4vw, 3.2rem)/1.12 var(--serif); letter-spacing: -.035em; }
+    .section-head p, .center-head p { max-width: 470px; margin: 12px 0 0; color: var(--muted); line-height: 1.8; }
+    .center-head { max-width: 650px; margin: 0 auto 42px; text-align: center; }
+    .btn { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 10px; padding: 0 22px; border: 1px solid var(--green); border-radius: 999px; background: var(--green); color: white; font-size: .88rem; font-weight: 700; transition: .2s ease; }
+    .btn:hover { transform: translateY(-2px); background: var(--green-dark); }
+    .btn-light { border-color: rgba(255,255,255,.55); background: rgba(255,255,255,.12); color: white; }
+    .btn-light:hover { background: white; color: var(--green); }
+    .text-link { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-size: .88rem; font-weight: 700; }
+    .text-link:hover { gap: 13px; }
+
+    .announcement { padding: 9px 16px; background: var(--green-dark); color: #f8f8ed; text-align: center; font-size: .77rem; letter-spacing: .03em; }
+    .announcement strong { color: var(--lime); }
+    .navbar { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid rgba(32,40,33,.08); background: rgba(250,249,245,.9); backdrop-filter: blur(16px); }
+    .nav-inner { display: flex; height: 76px; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.25rem; font-weight: 700; letter-spacing: -.04em; }
+    .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--green); color: var(--lime); }
+    .brand-mark svg { width: 20px; }
+    .nav-links { display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); color: #505950; font-size: .81rem; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .lang-btn, .icon-btn, .menu-btn { display: inline-grid; min-width: 40px; height: 40px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); }
+    .lang-btn { width: auto; padding: 0 13px; border-radius: 999px; font-size: .75rem; font-weight: 700; }
+    .icon-btn { position: relative; }
+    .icon-btn svg, .menu-btn svg { width: 19px; height: 19px; }
+    .cart-count { position: absolute; top: -4px; right: -4px; display: grid; width: 18px; height: 18px; place-items: center; border: 2px solid var(--cream); border-radius: 50%; background: var(--green); color: white; font-size: .62rem; }
+    .menu-btn { display: none; }
+
+    .hero { overflow: hidden; padding: 46px 0 76px; }
+    .hero-grid { display: grid; min-height: 510px; grid-template-columns: 1fr 1.04fr; align-items: center; gap: 5%; }
+    .hero-copy { position: relative; z-index: 1; padding: 26px 0; }
+    .hero-copy .eyebrow { display: inline-flex; align-items: center; gap: 9px; }
+    .hero-copy .eyebrow:before { width: 25px; height: 1px; background: var(--green); content: ""; }
+    .hero h1 { max-width: 590px; margin: 19px 0; font: 500 clamp(3rem, 6vw, 5.2rem)/1.03 var(--serif); letter-spacing: -.055em; }
+    .hero h1 span { color: var(--green); font-style: italic; }
+    .hero-copy > p { max-width: 460px; margin: 0; color: var(--muted); font-size: 1.02rem; line-height: 1.9; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 29px; }
+    .hero-cta .btn-secondary { background: transparent; color: var(--green); }
+    .hero-meta { display: flex; align-items: center; gap: 14px; margin-top: 34px; color: var(--muted); font-size: .76rem; }
+    .avatar-stack { display: flex; padding-left: 6px; }
+    .avatar-stack img { width: 31px; height: 31px; margin-left: -6px; border: 2px solid var(--cream); border-radius: 50%; object-fit: cover; }
+    .hero-visual { position: relative; min-height: 500px; }
+    .hero-photo { position: absolute; inset: 0 20px 0 30px; overflow: hidden; border-radius: 46% 46% 16px 16px; background: #dce5d2; }
+    .hero-photo img { height: 100%; object-fit: cover; object-position: center; }
+    .hero-photo:after { position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, rgba(28,39,29,.26)); content: ""; }
+    .discount-badge { position: absolute; z-index: 2; top: 48px; left: 3px; display: grid; width: 88px; height: 88px; align-content: center; border-radius: 50%; background: var(--lime); color: var(--green-dark); text-align: center; transform: rotate(-10deg); }
+    .discount-badge b { font: 700 1.4rem var(--serif); }
+    .discount-badge span { font-size: .62rem; font-weight: 700; letter-spacing: .08em; }
+    .hero-note { position: absolute; z-index: 2; right: -2px; bottom: 31px; max-width: 210px; padding: 16px 18px; border: 1px solid rgba(255,255,255,.7); border-radius: 13px; background: rgba(255,254,250,.9); box-shadow: var(--shadow); font-size: .77rem; line-height: 1.55; }
+    .hero-note b { display: block; margin-bottom: 4px; color: var(--green); font-size: .85rem; }
+
+    .trust-strip { border-block: 1px solid var(--line); background: rgba(255,254,250,.45); }
+    .trust-items { display: grid; grid-template-columns: repeat(4,1fr); }
+    .trust-item { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 20px 12px; border-right: 1px solid var(--line); }
+    .trust-item:last-child { border: 0; }
+    .trust-icon { display: grid; width: 37px; height: 37px; flex: 0 0 37px; place-items: center; border-radius: 50%; background: #e8eddf; color: var(--green); font-size: 1.05rem; }
+    .trust-item b { display: block; font-size: .78rem; }
+    .trust-item small { color: var(--muted); font-size: .68rem; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .product-card { overflow: hidden; border: 1px solid rgba(32,40,33,.07); border-radius: 15px; background: var(--white); transition: transform .25s, box-shadow .25s; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .product-image { position: relative; overflow: hidden; aspect-ratio: 1 / 1.05; background: #eef0e9; }
+    .product-image img { height: 100%; object-fit: cover; transition: transform .45s; }
+    .product-card:hover .product-image img { transform: scale(1.05); }
+    .pill { position: absolute; top: 13px; left: 13px; padding: 6px 10px; border-radius: 999px; background: var(--white); color: var(--green); font-size: .64rem; font-weight: 700; }
+    .wish { position: absolute; top: 12px; right: 12px; display: grid; width: 35px; height: 35px; place-items: center; border: 0; border-radius: 50%; background: rgba(255,254,250,.9); color: var(--ink); font-size: 1.05rem; }
+    .wish:hover, .wish.active { color: #bf634d; }
+    .product-info { padding: 16px; }
+    .product-info h3 { margin: 0 0 6px; font: 600 1rem var(--sans); }
+    .product-info p { min-height: 38px; margin: 0 0 10px; color: var(--muted); font-size: .76rem; line-height: 1.55; }
+    .rating { color: #d69a44; font-size: .78rem; letter-spacing: .04em; }
+    .rating span { margin-left: 5px; color: var(--muted); font-size: .7rem; }
+    .product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 13px; }
+    .price { color: var(--green-dark); font-size: .94rem; font-weight: 700; }
+    .old-price { margin-left: 5px; color: #a4a69e; font-size: .72rem; font-weight: 400; text-decoration: line-through; }
+    .add-btn { display: inline-grid; width: 36px; height: 36px; flex: 0 0 36px; place-items: center; border: 0; border-radius: 50%; background: var(--green); color: white; font-size: 1.2rem; }
+    .add-btn:hover { background: var(--green-dark); }
+    .center-link { margin-top: 34px; text-align: center; }
+
+    .categories { background: rgba(255,254,250,.52); }
+    .category-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; }
+    .category-card { overflow: hidden; border-radius: 13px; background: white; text-align: center; transition: transform .2s; }
+    .category-card:hover { transform: translateY(-4px); }
+    .category-card img { height: 155px; object-fit: cover; }
+    .category-card b { display: block; padding: 14px 6px 16px; font-size: .8rem; }
+
+    .benefit-layout { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 9%; }
+    .benefit-photo { position: relative; overflow: hidden; min-height: 440px; border-radius: 180px 180px 14px 14px; background: #e8e9df; }
+    .benefit-photo img { position: absolute; height: 100%; object-fit: cover; }
+    .benefit-stamp { position: absolute; right: -14px; bottom: 30px; display: grid; width: 108px; height: 108px; place-items: center; border: 8px solid var(--cream); border-radius: 50%; background: var(--lime); color: var(--green-dark); text-align: center; font: 700 .8rem/1.3 var(--serif); transform: rotate(8deg); }
+    .benefit-copy h2 { max-width: 550px; margin: 10px 0 15px; font: 500 clamp(2.2rem,4vw,3.3rem)/1.13 var(--serif); letter-spacing: -.04em; }
+    .benefit-copy > p { color: var(--muted); line-height: 1.8; }
+    .benefit-list { display: grid; grid-template-columns: 1fr 1fr; gap: 19px 25px; margin: 30px 0; }
+    .benefit-item { display: flex; align-items: flex-start; gap: 11px; }
+    .check { display: grid; width: 25px; height: 25px; flex: 0 0 25px; place-items: center; border-radius: 50%; background: #e5edd8; color: var(--green); font-size: .78rem; }
+    .benefit-item b { display: block; margin-bottom: 3px; font-size: .82rem; }
+    .benefit-item small { color: var(--muted); font-size: .71rem; line-height: 1.5; }
+
+    .why-us { padding: 80px 0; background: var(--green-dark); color: white; }
+    .why-us .eyebrow { color: var(--lime); }
+    .why-us .center-head p { color: rgba(255,255,255,.68); }
+    .why-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 24px; }
+    .why-card { text-align: center; }
+    .why-icon { display: grid; width: 53px; height: 53px; margin: auto auto 15px; place-items: center; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; color: var(--lime); font-size: 1.25rem; }
+    .why-card b { display: block; margin-bottom: 7px; font-size: .82rem; }
+    .why-card p { margin: 0; color: rgba(255,255,255,.64); font-size: .7rem; line-height: 1.6; }
+
+    .detail-section { background: rgba(255,254,250,.5); }
+    .detail-panel { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-radius: 18px; background: #eeefe7; }
+    .detail-image { min-height: 480px; }
+    .detail-image img { height: 100%; object-fit: cover; }
+    .detail-copy { align-self: center; padding: clamp(28px,5vw,65px); }
+    .detail-copy h2 { margin: 12px 0; font: 500 clamp(2rem,4vw,3rem)/1.12 var(--serif); letter-spacing: -.04em; }
+    .detail-copy > p { color: var(--muted); line-height: 1.8; }
+    .specs { margin: 24px 0; border-top: 1px solid #d8dbd1; }
+    .spec-row { display: flex; justify-content: space-between; gap: 15px; padding: 12px 0; border-bottom: 1px solid #d8dbd1; font-size: .78rem; }
+    .spec-row span:first-child { color: var(--muted); }
+    .color-dots { display: flex; gap: 8px; align-items: center; }
+    .color-dot { width: 14px; height: 14px; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 0 1px #b8bbae; }
+    .color-dot:nth-child(1) { background: #526851; }
+    .color-dot:nth-child(2) { background: #c9a88d; }
+    .color-dot:nth-child(3) { background: #45494c; }
+
+    .offer-banner { position: relative; overflow: hidden; display: grid; min-height: 330px; grid-template-columns: 1.2fr .8fr; align-items: center; padding: 45px 8%; border-radius: 18px; background: #dfe9d2; }
+    .offer-banner:after { position: absolute; top: -150px; right: 11%; width: 480px; height: 480px; border: 1px solid rgba(53,93,69,.15); border-radius: 50%; box-shadow: 0 0 0 50px rgba(53,93,69,.035), 0 0 0 100px rgba(53,93,69,.025); content: ""; }
+    .offer-copy { position: relative; z-index: 1; }
+    .offer-copy h2 { max-width: 500px; margin: 12px 0; font: 500 clamp(2.3rem,5vw,4rem)/1.05 var(--serif); letter-spacing: -.04em; }
+    .offer-copy p { color: #657263; line-height: 1.7; }
+    .countdown { display: flex; gap: 10px; margin: 22px 0; }
+    .time-box { display: grid; min-width: 55px; padding: 9px 8px; border-radius: 8px; background: rgba(255,255,255,.62); text-align: center; }
+    .time-box b { font: 700 1.15rem var(--serif); }
+    .time-box small { color: var(--muted); font-size: .57rem; text-transform: uppercase; }
+    .offer-product { position: relative; z-index: 1; justify-self: center; width: min(260px,100%); height: 250px; overflow: hidden; border-radius: 48% 48% 13px 13px; background: #cbd9bf; transform: rotate(3deg); }
+    .offer-product img { height: 100%; object-fit: cover; }
+
+    .best-seller { background: rgba(255,254,250,.48); }
+    .seller-row { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 7%; }
+    .seller-image { position: relative; overflow: hidden; height: 430px; border-radius: 16px; }
+    .seller-image img { height: 100%; object-fit: cover; }
+    .seller-image span { position: absolute; top: 20px; left: 20px; padding: 8px 13px; border-radius: 999px; background: var(--lime); color: var(--green-dark); font-size: .7rem; font-weight: 700; }
+    .seller-copy h2 { margin: 11px 0; font: 500 clamp(2.4rem,4vw,3.5rem)/1.08 var(--serif); letter-spacing: -.04em; }
+    .seller-copy > p { color: var(--muted); line-height: 1.8; }
+    .seller-score { display: flex; align-items: center; gap: 12px; margin: 23px 0; }
+    .score-number { font: 500 2.7rem var(--serif); }
+    .seller-score small { display: block; color: var(--muted); }
+    .seller-points { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0 28px; font-size: .8rem; }
+    .seller-points span:before { margin-right: 8px; color: var(--green); content: "✓"; font-weight: 700; }
+
+    .testimonial-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .quote-card { padding: 25px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,254,250,.8); }
+    .quote-card .rating { font-size: .82rem; }
+    .quote-card blockquote { margin: 17px 0 22px; color: #4e574f; font: 400 1rem/1.75 var(--serif); }
+    .reviewer { display: flex; align-items: center; gap: 11px; }
+    .reviewer img { width: 39px; height: 39px; border-radius: 50%; object-fit: cover; }
+    .reviewer b { display: block; font-size: .77rem; }
+    .reviewer small { color: var(--muted); font-size: .67rem; }
+    .review-verified { margin-left: auto; color: var(--green); font-size: .66rem; }
+
+    .numbers { padding: 62px 0; background: #e8ebdf; }
+    .number-grid { display: grid; grid-template-columns: repeat(4,1fr); text-align: center; }
+    .number-grid > div { border-right: 1px solid #d1d7c9; }
+    .number-grid > div:last-child { border: 0; }
+    .number-grid b { display: block; color: var(--green-dark); font: 500 clamp(2rem,4vw,3rem) var(--serif); }
+    .number-grid span { color: var(--muted); font-size: .78rem; }
+
+    .gallery-grid { display: grid; grid-template-columns: 1.3fr .8fr .8fr 1fr; grid-template-rows: 190px 190px; gap: 12px; }
+    .gallery-grid img { height: 100%; border-radius: 11px; object-fit: cover; }
+    .gallery-grid img:first-child { grid-row: span 2; }
+    .gallery-grid img:nth-child(4) { grid-row: span 2; }
+
+    .faq-section { background: rgba(255,254,250,.5); }
+    .faq-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 9%; }
+    .faq-intro h2 { margin: 10px 0; font: 500 clamp(2.2rem,4vw,3.2rem)/1.1 var(--serif); letter-spacing: -.04em; }
+    .faq-intro p { color: var(--muted); line-height: 1.8; }
+    .faq-list details { border-bottom: 1px solid var(--line); }
+    .faq-list summary { position: relative; padding: 19px 30px 19px 0; cursor: pointer; list-style: none; font-size: .88rem; font-weight: 700; }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary:after { position: absolute; right: 2px; color: var(--green); content: "+"; font-size: 1.2rem; }
+    .faq-list details[open] summary:after { content: "−"; }
+    .faq-list details p { margin: 0; padding: 0 25px 19px 0; color: var(--muted); font-size: .8rem; line-height: 1.8; }
+
+    .newsletter { padding: 65px 0; background: var(--green); color: white; }
+    .newsletter-inner { display: flex; align-items: center; justify-content: space-between; gap: 36px; }
+    .newsletter h2 { margin: 0 0 8px; font: 500 clamp(1.8rem,3vw,2.6rem) var(--serif); }
+    .newsletter p { margin: 0; color: rgba(255,255,255,.72); font-size: .84rem; }
+    .newsletter-form { display: flex; width: min(450px,100%); padding: 5px; border: 1px solid rgba(255,255,255,.4); border-radius: 999px; background: rgba(255,255,255,.09); }
+    .newsletter-form input { width: 100%; min-width: 0; padding: 0 14px; border: 0; outline: 0; background: transparent; color: white; font: inherit; font-size: .8rem; }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,.68); }
+    .newsletter-form button { min-height: 42px; flex: 0 0 auto; border: 0; border-radius: 999px; background: var(--lime); color: var(--green-dark); padding: 0 18px; font-size: .78rem; font-weight: 700; }
+
+    .contact-section { padding: 70px 0; }
+    .contact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .contact-card { padding: 23px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,254,250,.65); }
+    .contact-card span { display: block; margin-bottom: 10px; color: var(--green); font-size: 1.2rem; }
+    .contact-card b { display: block; margin-bottom: 5px; font-size: .84rem; }
+    .contact-card p { margin: 0; color: var(--muted); font-size: .78rem; line-height: 1.7; }
+
+    footer { padding: 58px 0 20px; background: #222f27; color: white; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr repeat(3,1fr); gap: 40px; padding-bottom: 43px; }
+    .footer-brand .brand { color: white; }
+    .footer-brand p { max-width: 270px; margin: 17px 0; color: rgba(255,255,255,.62); font-size: .78rem; line-height: 1.8; }
+    .socials { display: flex; gap: 8px; }
+    .socials a { display: grid; width: 32px; height: 32px; place-items: center; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; color: var(--lime); font-size: .72rem; }
+    .footer-col h3 { margin: 0 0 17px; color: var(--lime); font-size: .8rem; }
+    .footer-col a { display: block; width: fit-content; margin: 11px 0; color: rgba(255,255,255,.67); font-size: .75rem; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 15px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.16); color: rgba(255,255,255,.54); font-size: .68rem; }
+    .toast { position: fixed; z-index: 50; right: 22px; bottom: 22px; max-width: calc(100% - 44px); padding: 13px 19px; border-radius: 10px; background: var(--green-dark); box-shadow: var(--shadow); color: white; font-size: .82rem; opacity: 0; pointer-events: none; transform: translateY(12px); transition: .25s; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    :focus-visible { outline: 3px solid #8da969; outline-offset: 3px; }
+
+    @media (max-width: 980px) {
+      .nav-links { gap: 13px; font-size: .75rem; }
+      .nav-inner { gap: 14px; }
+      .hero-grid { gap: 3%; }
+      .hero-visual { min-height: 430px; }
+      .product-grid { grid-template-columns: repeat(2,1fr); }
+      .category-grid { grid-template-columns: repeat(3,1fr); }
+      .category-card img { height: 185px; }
+      .why-grid { grid-template-columns: repeat(3,1fr); row-gap: 30px; }
+      .footer-grid { gap: 25px; }
+    }
+    @media (max-width: 720px) {
+      .container { width: min(100% - 34px, 560px); }
+      .section { padding: 68px 0; }
+      .announcement { font-size: .69rem; }
+      .nav-inner { height: 66px; }
+      .menu-btn { display: inline-grid; }
+      .nav-links { position: absolute; top: 65px; right: 0; left: 0; display: none; align-items: stretch; padding: 13px 22px 20px; border-bottom: 1px solid var(--line); background: #faf9f5; box-shadow: 0 15px 20px rgba(32,40,33,.06); }
+      .nav-links.open { display: flex; flex-direction: column; }
+      .nav-links a { padding: 8px 0; font-size: .88rem; }
+      .nav-actions { gap: 8px; }
+      .hero { padding: 23px 0 55px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 25px; }
+      .hero-copy { padding: 12px 0 0; }
+      .hero h1 { max-width: 500px; font-size: clamp(3rem,12vw,4.4rem); }
+      .hero-copy > p { font-size: .92rem; }
+      .hero-visual { min-height: 390px; }
+      .hero-photo { inset: 0 14px 0 20px; }
+      .discount-badge { top: 25px; left: 0; width: 76px; height: 76px; }
+      .hero-note { right: 0; bottom: 19px; }
+      .trust-items { grid-template-columns: 1fr 1fr; }
+      .trust-item { justify-content: flex-start; border-bottom: 1px solid var(--line); }
+      .trust-item:nth-child(2) { border-right: 0; }
+      .trust-item:nth-child(n+3) { border-bottom: 0; }
+      .section-head { align-items: flex-start; flex-direction: column; gap: 14px; margin-bottom: 25px; }
+      .section-head p { margin-top: 7px; }
+      .product-grid { gap: 12px; }
+      .product-info { padding: 12px; }
+      .product-info h3 { font-size: .9rem; }
+      .product-info p { min-height: 48px; font-size: .71rem; }
+      .product-bottom { align-items: flex-end; }
+      .old-price { display: block; margin: 2px 0 0; }
+      .category-grid { grid-template-columns: repeat(2,1fr); gap: 11px; }
+      .category-card img { height: 155px; }
+      .benefit-layout { grid-template-columns: 1fr; gap: 36px; }
+      .benefit-photo { min-height: 370px; width: 85%; }
+      .benefit-copy h2 { font-size: 2.6rem; }
+      .benefit-list { gap: 16px 12px; }
+      .why-grid { grid-template-columns: repeat(2,1fr); gap: 28px 14px; }
+      .detail-panel { grid-template-columns: 1fr; }
+      .detail-image { min-height: 320px; max-height: 420px; }
+      .detail-copy { padding: 30px 23px; }
+      .offer-banner { min-height: 0; grid-template-columns: 1fr .65fr; gap: 8px; padding: 30px 23px; }
+      .offer-copy h2 { font-size: 2.3rem; }
+      .offer-product { width: 150px; height: 190px; }
+      .seller-row { grid-template-columns: 1fr; gap: 30px; }
+      .seller-image { height: 340px; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .quote-card { padding: 22px; }
+      .number-grid { grid-template-columns: 1fr 1fr; row-gap: 24px; }
+      .number-grid > div:nth-child(2) { border: 0; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 135px 135px; }
+      .gallery-grid img:first-child { grid-row: span 2; }
+      .gallery-grid img:nth-child(4) { grid-row: auto; }
+      .faq-layout { grid-template-columns: 1fr; gap: 22px; }
+      .newsletter-inner { align-items: flex-start; flex-direction: column; gap: 22px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 11px; }
+      .contact-card { padding: 18px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+      .footer-brand { grid-column: span 2; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (max-width: 380px) {
+      .container { width: calc(100% - 26px); }
+      .brand { font-size: 1.08rem; }
+      .nav-actions { gap: 6px; }
+      .lang-btn { padding: 0 9px; }
+      .icon-btn, .menu-btn { min-width: 36px; height: 36px; }
+      .hero-cta .btn { padding: 0 16px; font-size: .8rem; }
+      .product-info { padding: 10px; }
+      .add-btn { width: 32px; height: 32px; flex-basis: 32px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *:before, *:after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement" data-bn="সীমিত সময়ের অফার — ৳২,০০০-এর বেশি অর্ডারে <strong>ফ্রি ডেলিভারি</strong> ✦ কোড: <strong>WELCOME10</strong>" data-en="Limited-time offer — <strong>Free delivery</strong> on orders over ৳2,000 ✦ Code: <strong>WELCOME10</strong>">সীমিত সময়ের অফার — ৳২,০০০-এর বেশি অর্ডারে <strong>ফ্রি ডেলিভারি</strong> ✦ কোড: <strong>WELCOME10</strong></div>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="Baying a Dream">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20c-4-3-7-6.2-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 3.8-3 7-7 10Z" stroke="currentColor" stroke-width="1.7"/><path d="M12 16c.2-3 1.4-5.1 3.5-6.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        Baying a Dream
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home" data-bn="হোম" data-en="Home">হোম</a>
+        <a href="#products" data-bn="পণ্য" data-en="Products">পণ্য</a>
+        <a href="#categories" data-bn="ক্যাটাগরি" data-en="Categories">ক্যাটাগরি</a>
+        <a href="#about" data-bn="আমাদের কথা" data-en="About">আমাদের কথা</a>
+        <a href="#benefits" data-bn="সুবিধা" data-en="Benefits">সুবিধা</a>
+        <a href="#reviews" data-bn="রিভিউ" data-en="Reviews">রিভিউ</a>
+        <a href="#contact" data-bn="যোগাযোগ" data-en="Contact">যোগাযোগ</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="lang-btn" id="languageToggle" type="button" aria-label="Switch language">English</button>
+        <button class="icon-btn" id="cartButton" type="button" aria-label="Shopping cart">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.2 11.1a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L21 8H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.3" fill="currentColor"/><circle cx="18" cy="20" r="1.3" fill="currentColor"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="menu-btn" id="menuButton" type="button" aria-label="Open navigation menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Hero -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow" data-bn="প্রতিদিনের জীবনে একটু ভালো থাকা" data-en="A little better, every day">প্রতিদিনের জীবনে একটু ভালো থাকা</span>
+          <h1 data-bn="যত্নে বেছে নেওয়া, <span>ভালোবাসায়</span> তৈরি।" data-en="Thoughtfully chosen, <span>made for</span> living.">যত্নে বেছে নেওয়া, <span>ভালোবাসায়</span> তৈরি।</h1>
+          <p data-bn="আপনার প্রতিদিনকে আরও সুন্দর করে তুলতে মান, নকশা আর দায়িত্বশীলতার এক সহজ সমন্বয়।" data-en="A considered blend of quality, design and care—made to bring a little more joy to your everyday.">আপনার প্রতিদিনকে আরও সুন্দর করে তুলতে মান, নকশা আর দায়িত্বশীলতার এক সহজ সমন্বয়।</p>
+          <div class="hero-cta">
+            <a class="btn" href="#products"><span data-bn="এখনই কেনাকাটা" data-en="Shop now">এখনই কেনাকাটা</span> <span aria-hidden="true">→</span></a>
+            <a class="btn btn-secondary" href="#categories" data-bn="পণ্য দেখুন" data-en="Explore products">পণ্য দেখুন</a>
+          </div>
+          <div class="hero-meta">
+            <div class="avatar-stack" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=80&amp;q=80" alt="">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=80&amp;q=80" alt="">
+              <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&amp;fit=crop&amp;w=80&amp;q=80" alt="">
+            </div>
+            <span data-bn="<b>২,৫০০+</b> জন ক্রেতার পছন্দ" data-en="Loved by <b>2,500+</b> happy customers"><b>২,৫০০+</b> জন ক্রেতার পছন্দ</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-photo"><img src="image/shop.jpg"></div>
+          <div class="discount-badge"><b>২০%</b><span data-bn="ছাড়" data-en="OFF">ছাড়</span></div>
+          <div class="hero-note"><b data-bn="নতুন মৌসুম, নতুন অনুভূতি" data-en="A new season, a fresh feeling">নতুন মৌসুম, নতুন অনুভূতি</b><span data-bn="নির্বাচিত পণ্যে বিশেষ মূল্য" data-en="A special price on selected finds">নির্বাচিত পণ্যে বিশেষ মূল্য</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Store promises -->
+    <section class="trust-strip" aria-label="Store promises">
+      <div class="container trust-items">
+        <div class="trust-item"><span class="trust-icon">✦</span><div><b data-bn="যত্নে বাছাই করা" data-en="Thoughtfully selected">যত্নে বাছাই করা</b><small data-bn="মানের নিশ্চয়তা" data-en="Quality you can trust">মানের নিশ্চয়তা</small></div></div>
+        <div class="trust-item"><span class="trust-icon">↗</span><div><b data-bn="দ্রুত ডেলিভারি" data-en="Fast delivery">দ্রুত ডেলিভারি</b><small data-bn="সারা বাংলাদেশে" data-en="Across Bangladesh">সারা বাংলাদেশে</small></div></div>
+        <div class="trust-item"><span class="trust-icon">◇</span><div><b data-bn="নিরাপদ পেমেন্ট" data-en="Secure payments">নিরাপদ পেমেন্ট</b><small data-bn="নিরাপদে কেনাকাটা" data-en="Shop with confidence">নিরাপদে কেনাকাটা</small></div></div>
+        <div class="trust-item"><span class="trust-icon">↺</span><div><b data-bn="সহজ রিটার্ন" data-en="Easy returns">সহজ রিটার্ন</b><small data-bn="৭ দিনের রিটার্ন সুবিধা" data-en="7-day return window">৭ দিনের রিটার্ন সুবিধা</small></div></div>
+      </div>
+    </section>
+
+    <!-- 3. Featured products -->
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow" data-bn="আপনাদের পছন্দের" data-en="Customer favorites">আপনাদের পছন্দের</span><h2 data-bn="জনপ্রিয় পণ্য" data-en="Featured finds">জনপ্রিয় পণ্য</h2><p data-bn="যে পণ্যগুলো আমাদের ক্রেতারা বারবার বেছে নেন।" data-en="The pieces our community keeps coming back for.">যে পণ্যগুলো আমাদের ক্রেতারা বারবার বেছে নেন।</p></div>
+          <a class="text-link" href="#best" data-bn="সব পণ্য দেখুন →" data-en="View all products →">সব পণ্য দেখুন →</a>
+        </div>
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-image"><img src="image/watch.avif" alt="Minimalist everyday wristwatch"><span class="pill" data-bn="বেস্টসেলার" data-en="Bestseller">বেস্টসেলার</span><button class="wish" type="button" aria-label="Add watch to wishlist">♡</button></div>
+            <div class="product-info"><h3 data-bn="ক্লাসিক টাইমপিস" data-en="Classic timepiece">ক্লাসিক টাইমপিস</h3><p data-bn="প্রতিটি মুহূর্তে অনায়াস আভিজাত্য।" data-en="Effortless elegance, for every hour.">প্রতিটি মুহূর্তে অনায়াস আভিজাত্য।</p><div class="rating">★★★★★ <span>(৪.৯)</span></div><div class="product-bottom"><div class="price">৳ ৩,৪৯০ <span class="old-price">৳ ৪,২০০</span></div><button class="add-btn" type="button" aria-label="Add Classic timepiece to cart" data-product="ক্লাসিক টাইমপিস" data-product-en="Classic timepiece">+</button></div></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image"><img src="image/shoos.jpg" alt="Modern red everyday sneakers"><span class="pill" data-bn="নতুন" data-en="New">নতুন</span><button class="wish" type="button" aria-label="Add sneakers to wishlist">♡</button></div>
+            <div class="product-info"><h3 data-bn="আরবান স্নিকার্স" data-en="Urban sneakers">আরবান স্নিকার্স</h3><p data-bn="সারাদিনের আরামে চলুন নিজের পথে।" data-en="All-day comfort, your own pace.">সারাদিনের আরামে চলুন নিজের পথে।</p><div class="rating">★★★★★ <span>(৪.৮)</span></div><div class="product-bottom"><div class="price">৳ ২,৮৫০ <span class="old-price">৳ ৩,৫০০</span></div><button class="add-btn" type="button" aria-label="Add Urban sneakers to cart" data-product="আরবান স্নিকার্স" data-product-en="Urban sneakers">+</button></div></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image"><img src="image/ciram.png" alt="Skincare and beauty bottles"><span class="pill" data-bn="পরিবেশবান্ধব" data-en="Eco choice">পরিবেশবান্ধব</span><button class="wish" type="button" aria-label="Add skincare set to wishlist">♡</button></div>
+            <div class="product-info"><h3 data-bn="বোটানিক্যাল স্কিন সেট" data-en="Botanical skin set">বোটানিক্যাল স্কিন সেট</h3><p data-bn="উদ্ভিদ-নির্ভর যত্ন, কোমল প্রতিদিন।" data-en="Plant-powered care for softer days.">উদ্ভিদ-নির্ভর যত্ন, কোমল প্রতিদিন।</p><div class="rating">★★★★★ <span>(৪.৯)</span></div><div class="product-bottom"><div class="price">৳ ১,৬৫০ <span class="old-price">৳ ১,৯৯০</span></div><button class="add-btn" type="button" aria-label="Add Botanical skin set to cart" data-product="বোটানিক্যাল স্কিন সেট" data-product-en="Botanical skin set">+</button></div></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="Over-ear wireless headphones"><span class="pill" data-bn="জনপ্রিয়" data-en="Popular">জনপ্রিয়</span><button class="wish" type="button" aria-label="Add headphones to wishlist">♡</button></div>
+            <div class="product-info"><h3 data-bn="ওয়েভ ওয়্যারলেস" data-en="Wave wireless">ওয়েভ ওয়্যারলেস</h3><p data-bn="আপনার পছন্দের সুর, আরও গভীরভাবে।" data-en="Hear the details in every favorite.">আপনার পছন্দের সুর, আরও গভীরভাবে।</p><div class="rating">★★★★☆ <span>(৪.৭)</span></div><div class="product-bottom"><div class="price">৳ ৪,২৫০ <span class="old-price">৳ ৪,৯৯০</span></div><button class="add-btn" type="button" aria-label="Add Wave wireless to cart" data-product="ওয়েভ ওয়্যারলেস" data-product-en="Wave wireless">+</button></div></div>
+          </article>
+        </div>
+        <div class="center-link"><a class="btn btn-secondary" href="#categories" data-bn="সব কালেকশন ঘুরে দেখুন" data-en="Explore all collections">সব কালেকশন ঘুরে দেখুন</a></div>
+      </div>
+    </section>
+
+    <!-- 4. Categories -->
+    <section class="section categories" id="categories">
+      <div class="container">
+        <div class="center-head"><span class="eyebrow" data-bn="আপনার পছন্দ, আপনার মতো" data-en="Find your kind of good">আপনার পছন্দ, আপনার মতো</span><h2 data-bn="ক্যাটাগরি অনুযায়ী খুঁজুন" data-en="Shop by category">ক্যাটাগরি অনুযায়ী খুঁজুন</h2><p data-bn="জীবনের প্রতিটি অংশের জন্য যত্নে বেছে নেওয়া কালেকশন।" data-en="Considered collections for all the little parts of life.">জীবনের প্রতিটি অংশের জন্য যত্নে বেছে নেওয়া কালেকশন।</p></div>
+        <div class="category-grid">
+          <a class="category-card" href="#products"><img src="image/ilc.jpg" alt="Modern electronics"><b data-bn="ইলেকট্রনিক্স" data-en="Electronics">ইলেকট্রনিক্স</b></a>
+          <a class="category-card" href="#products"><img src="image/fation.avif" alt="Contemporary fashion"><b data-bn="ফ্যাশন" data-en="Fashion">ফ্যাশন</b></a>
+          <a class="category-card" href="#products"><img src="image/living.jpg" alt="Bright kitchen and home"><b data-bn="হোম ও লিভিং" data-en="Home & living">হোম ও লিভিং</b></a>
+          <a class="category-card" href="#products"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Beauty and self-care products"><b data-bn="বিউটি ও কেয়ার" data-en="Beauty & care">বিউটি ও কেয়ার</b></a>
+          <a class="category-card" href="#products"><img src="image/watc.jpg" alt="Accessories and watch"><b data-bn="অ্যাক্সেসরিজ" data-en="Accessories">অ্যাক্সেসরিজ</b></a>
+          <a class="category-card" href="#products"><img src="image/life.jpg" alt="Lifestyle home decor"><b data-bn="লাইফস্টাইল" data-en="Lifestyle">লাইফস্টাইল</b></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Benefits -->
+    <section class="section" id="benefits">
+      <div class="container benefit-layout">
+        <div class="benefit-photo"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Calm and thoughtfully styled living space"><div class="benefit-stamp" data-bn="ভালো পছন্দ<br>ভালো অনুভব" data-en="Good choices<br>feel good">ভালো পছন্দ<br>ভালো অনুভব</div></div>
+        <div class="benefit-copy">
+          <span class="eyebrow" data-bn="শুধু পণ্য নয়, অভিজ্ঞতাও" data-en="More than just a product">শুধু পণ্য নয়, অভিজ্ঞতাও</span>
+          <h2 data-bn="যে গুণে প্রতিদিনের ব্যবহার হয়ে ওঠে বিশেষ।" data-en="The little details that make everyday feel special.">যে গুণে প্রতিদিনের ব্যবহার হয়ে ওঠে বিশেষ।</h2>
+          <p data-bn="আমরা এমন জিনিসে বিশ্বাস করি যা দেখতে সুন্দর, ব্যবহার করা সহজ এবং দীর্ঘদিন পাশে থাকে।" data-en="We believe in pieces that look good, feel intuitive and are made to stay by your side.">আমরা এমন জিনিসে বিশ্বাস করি যা দেখতে সুন্দর, ব্যবহার করা সহজ এবং দীর্ঘদিন পাশে থাকে।</p>
+          <div class="benefit-list">
+            <div class="benefit-item"><span class="check">✓</span><div><b data-bn="নির্ভরযোগ্য মান" data-en="Reliable quality">নির্ভরযোগ্য মান</b><small data-bn="প্রতিটি পণ্য যত্নে যাচাই করা।" data-en="Every item carefully checked.">প্রতিটি পণ্য যত্নে যাচাই করা।</small></div></div>
+            <div class="benefit-item"><span class="check">✓</span><div><b data-bn="সাশ্রয়ী মূল্য" data-en="Honest pricing">সাশ্রয়ী মূল্য</b><small data-bn="ভালো ডিজাইন, নাগালের ভেতরে।" data-en="Thoughtful design, within reach.">ভালো ডিজাইন, নাগালের ভেতরে।</small></div></div>
+            <div class="benefit-item"><span class="check">✓</span><div><b data-bn="দীর্ঘস্থায়ী ব্যবহার" data-en="Made to last">দীর্ঘস্থায়ী ব্যবহার</b><small data-bn="টেকসই উপকরণ ও যত্নশীল নির্মাণ।" data-en="Durable materials, considered craft.">টেকসই উপকরণ ও যত্নশীল নির্মাণ।</small></div></div>
+            <div class="benefit-item"><span class="check">✓</span><div><b data-bn="সহজ ও আধুনিক" data-en="Simple & intuitive">সহজ ও আধুনিক</b><small data-bn="আপনার জীবনের সঙ্গে মানানসই।" data-en="Designed around your routine.">আপনার জীবনের সঙ্গে মানানসই।</small></div></div>
+            <div class="benefit-item"><span class="check">✓</span><div><b data-bn="দায়িত্বশীল পছন্দ" data-en="Conscious choices">দায়িত্বশীল পছন্দ</b><small data-bn="পরিবেশের কথা ভেবে নির্বাচন।" data-en="Selected with a lighter footprint in mind.">পরিবেশের কথা ভেবে নির্বাচন।</small></div></div>
+            <div class="benefit-item"><span class="check">✓</span><div><b data-bn="সহজ যত্ন" data-en="Easy to care for">সহজ যত্ন</b><small data-bn="ব্যবহার ও রক্ষণাবেক্ষণে স্বচ্ছন্দ।" data-en="Low-fuss care, made simple.">ব্যবহার ও রক্ষণাবেক্ষণে স্বচ্ছন্দ।</small></div></div>
+          </div>
+          <a href="#about" class="text-link" data-bn="আমাদের গল্প জানুন →" data-en="Learn about our story →">আমাদের গল্প জানুন →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Why choose us -->
+    <section class="why-us" id="about">
+      <div class="container">
+        <div class="center-head"><span class="eyebrow" data-bn="আমাদের প্রতিশ্রুতি" data-en="Our promise">আমাদের প্রতিশ্রুতি</span><h2 data-bn="কেন নির্ভর করবেন Nirvana-তে?" data-en="Why make Nirvana yours?">কেন নির্ভর করবেন Nirvana-তে?</h2><p data-bn="প্রথম পছন্দ থেকে আপনার দোরগোড়া পর্যন্ত—প্রতিটি ধাপে আমরা পাশে আছি।" data-en="From that first pick to your doorstep, we’re here for every step.">প্রথম পছন্দ থেকে আপনার দোরগোড়া পর্যন্ত—প্রতিটি ধাপে আমরা পাশে আছি।</p></div>
+        <div class="why-grid">
+          <div class="why-card"><span class="why-icon">✧</span><b data-bn="প্রিমিয়াম মান" data-en="Premium quality">প্রিমিয়াম মান</b><p data-bn="যত্নে নির্বাচিত, মানে নির্ভরযোগ্য।" data-en="Carefully selected, quality assured.">যত্নে নির্বাচিত, মানে নির্ভরযোগ্য।</p></div>
+          <div class="why-card"><span class="why-icon">৳</span><b data-bn="ন্যায্য দাম" data-en="Fair prices">ন্যায্য দাম</b><p data-bn="ভালো পণ্যে স্বচ্ছ ও যুক্তিসঙ্গত মূল্য।" data-en="Honest value for thoughtful finds.">ভালো পণ্যে স্বচ্ছ ও যুক্তিসঙ্গত মূল্য।</p></div>
+          <div class="why-card"><span class="why-icon">♡</span><b data-bn="মানবিক সেবা" data-en="Human support">মানবিক সেবা</b><p data-bn="আপনার প্রতিটি প্রশ্নে আন্তরিক সহায়তা।" data-en="Real people, ready to help.">আপনার প্রতিটি প্রশ্নে আন্তরিক সহায়তা।</p></div>
+          <div class="why-card"><span class="why-icon">↗</span><b data-bn="দ্রুত ডেলিভারি" data-en="Fast delivery">দ্রুত ডেলিভারি</b><p data-bn="অর্ডার পৌঁছে যায় যত্নের সঙ্গে।" data-en="Thoughtful delivery, right on time.">অর্ডার পৌঁছে যায় যত্নের সঙ্গে।</p></div>
+          <div class="why-card"><span class="why-icon">◇</span><b data-bn="নিরাপদ পেমেন্ট" data-en="Secure checkout">নিরাপদ পেমেন্ট</b><p data-bn="নিরাপদ পেমেন্টে নিশ্চিন্ত কেনাকাটা।" data-en="Protected payments, peace of mind.">নিরাপদ পেমেন্টে নিশ্চিন্ত কেনাকাটা।</p></div>
+          <div class="why-card"><span class="why-icon">↺</span><b data-bn="সহজ রিটার্ন" data-en="Easy returns">সহজ রিটার্ন</b><p data-bn="মন না ভরলে ৭ দিনের মধ্যে ফেরত।" data-en="Changed your mind? Return within 7 days.">মন না ভরলে ৭ দিনের মধ্যে ফেরত।</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Product details -->
+    <section class="section detail-section" id="details">
+      <div class="container detail-panel">
+        <div class="detail-image"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Wave wireless headphones in a warm studio"></div>
+        <div class="detail-copy">
+          <span class="eyebrow" data-bn="এই সপ্তাহের পছন্দ" data-en="The detail edit">এই সপ্তাহের পছন্দ</span>
+          <h2 data-bn="ওয়েভ ওয়্যারলেস" data-en="Wave wireless">ওয়েভ ওয়্যারলেস</h2>
+          <div class="rating">★★★★★ <span data-bn="৪.৭ / ৫ · ১৮৬টি রিভিউ" data-en="4.7 / 5 · 186 reviews">৪.৭ / ৫ · ১৮৬টি রিভিউ</span></div>
+          <p data-bn="আরামদায়ক ফিট, স্বচ্ছ সাউন্ড আর সহজ কানেক্টিভিটি—কাজ, যাত্রা কিংবা একটু নিজের সময়ের সঙ্গী।" data-en="An easy, comfortable fit with clear sound and simple connectivity—ready for work, the commute or a little time to yourself.">আরামদায়ক ফিট, স্বচ্ছ সাউন্ড আর সহজ কানেক্টিভিটি—কাজ, যাত্রা কিংবা একটু নিজের সময়ের সঙ্গী।</p>
+          <div class="specs">
+            <div class="spec-row"><span data-bn="ব্যাটারি ব্যাকআপ" data-en="Battery life">ব্যাটারি ব্যাকআপ</span><b>Up to 30 hours</b></div>
+            <div class="spec-row"><span data-bn="কানেক্টিভিটি" data-en="Connectivity">কানেক্টিভিটি</span><b>Bluetooth 5.3</b></div>
+            <div class="spec-row"><span data-bn="ওয়ারেন্টি" data-en="Warranty">ওয়ারেন্টি</span><b data-bn="১ বছর" data-en="1 year">১ বছর</b></div>
+            <div class="spec-row"><span data-bn="রং" data-en="Colors">রং</span><span class="color-dots" aria-label="Forest, sand, charcoal"><i class="color-dot"></i><i class="color-dot"></i><i class="color-dot"></i></span></div>
+          </div>
+          <div class="product-bottom"><div class="price">৳ ৪,২৫০ <span class="old-price">৳ ৪,৯৯০</span></div><button class="btn add-btn-wide" type="button" data-product="ওয়েভ ওয়্যারলেস" data-product-en="Wave wireless" data-bn="কার্টে যোগ করুন" data-en="Add to cart">কার্টে যোগ করুন</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Special offer -->
+    <section class="section">
+      <div class="container offer-banner">
+        <div class="offer-copy">
+          <span class="eyebrow" data-bn="বিশেষ সময়ের জন্য" data-en="A little something special">বিশেষ সময়ের জন্য</span>
+          <h2 data-bn="আপনার প্রথম অর্ডারে ১৫% ছাড়।" data-en="Take 15% off your first order.">আপনার প্রথম অর্ডারে ১৫% ছাড়।</h2>
+          <p data-bn="পছন্দের পণ্যগুলো বেছে নিন, অফারটি আর দেরি না করে উপভোগ করুন।" data-en="Pick something you love and make the most of this limited-time offer.">পছন্দের পণ্যগুলো বেছে নিন, অফারটি আর দেরি না করে উপভোগ করুন।</p>
+          <div class="countdown" aria-label="Offer countdown">
+            <span class="time-box"><b>০৫</b><small data-bn="দিন" data-en="days">দিন</small></span><span class="time-box"><b>১২</b><small data-bn="ঘণ্টা" data-en="hours">ঘণ্টা</small></span><span class="time-box"><b>৪৮</b><small data-bn="মিনিট" data-en="mins">মিনিট</small></span>
+          </div>
+          <a href="#products" class="btn" data-bn="অফারটি নিন →" data-en="Shop the offer →">অফারটি নিন →</a>
+        </div>
+        <div class="offer-product"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Featured sneaker offer"></div>
+      </div>
+    </section>
+
+    <!-- 9. Best sellers -->
+    <section class="section best-seller" id="best">
+      <div class="container seller-row">
+        <div class="seller-image"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Classic timepiece bestselling watch"><span data-bn="নং ১ বেস্টসেলার" data-en="No. 1 bestseller">নং ১ বেস্টসেলার</span></div>
+        <div class="seller-copy">
+          <span class="eyebrow" data-bn="সবচেয়ে বেশি বিক্রিত" data-en="The community favorite">সবচেয়ে বেশি বিক্রিত</span>
+          <h2 data-bn="ভালো সময় কাটানোর নতুন উপায়।" data-en="A better way to spend your time.">ভালো সময় কাটানোর নতুন উপায়।</h2>
+          <p data-bn="পরিচ্ছন্ন ডায়াল, আরামদায়ক স্ট্র্যাপ আর নির্ভরযোগ্য মুভমেন্ট—ক্লাসিক টাইমপিস প্রতিদিনের জন্য তৈরি।" data-en="A clean dial, easy-wearing strap and reliable movement. The Classic Timepiece is made for everyday.">পরিচ্ছন্ন ডায়াল, আরামদায়ক স্ট্র্যাপ আর নির্ভরযোগ্য মুভমেন্ট—ক্লাসিক টাইমপিস প্রতিদিনের জন্য তৈরি।</p>
+          <div class="seller-score"><span class="score-number">4.9</span><div><div class="rating">★★★★★</div><small data-bn="১,২০০+ সন্তুষ্ট ক্রেতা" data-en="1,200+ happy customers">১,২০০+ সন্তুষ্ট ক্রেতা</small></div></div>
+          <div class="seller-points"><span data-bn="জল-প্রতিরোধী" data-en="Water resistant">জল-প্রতিরোধী</span><span data-bn="দুই বছরের ওয়ারেন্টি" data-en="2-year warranty">দুই বছরের ওয়ারেন্টি</span><span data-bn="সহজে বদলানো যায় স্ট্র্যাপ" data-en="Easy-change strap">সহজে বদলানো যায় স্ট্র্যাপ</span><span data-bn="উপহার দেওয়ার উপযোগী" data-en="Gift-ready packaging">উপহার দেওয়ার উপযোগী</span></div>
+          <div class="product-bottom"><div class="price">৳ ৩,৪৯০ <span class="old-price">৳ ৪,২০০</span></div><button class="btn add-btn-wide" type="button" data-product="ক্লাসিক টাইমপিস" data-product-en="Classic timepiece" data-bn="কার্টে যোগ করুন" data-en="Add to cart">কার্টে যোগ করুন</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Customer reviews -->
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="center-head"><span class="eyebrow" data-bn="আপনাদের ভালোবাসায়" data-en="Kind words, real people">আপনাদের ভালোবাসায়</span><h2 data-bn="ক্রেতাদের মুখে Nirvana" data-en="A little love from our customers">ক্রেতাদের মুখে Nirvana</h2><p data-bn="আপনাদের অভিজ্ঞতা আমাদের আরও ভালো হতে অনুপ্রাণিত করে।" data-en="Your experiences inspire us to keep making things better.">আপনাদের অভিজ্ঞতা আমাদের আরও ভালো হতে অনুপ্রাণিত করে।</p></div>
+        <div class="testimonial-grid">
+          <article class="quote-card"><div class="rating">★★★★★</div><blockquote data-bn="“ছবির মতোই সুন্দর, আর প্যাকেজিংটাও ছিল দারুণ। অর্ডারের পরদিনই হাতে পেয়েছি!”" data-en="“Just as lovely as the photos, and the packaging was beautiful. It arrived the very next day!”">“ছবির মতোই সুন্দর, আর প্যাকেজিংটাও ছিল দারুণ। অর্ডারের পরদিনই হাতে পেয়েছি!”</blockquote><div class="reviewer"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt=""><div><b data-bn="নুসরাত জাহান" data-en="Nusrat Jahan">নুসরাত জাহান</b><small data-bn="ঢাকা · যাচাইকৃত ক্রেতা" data-en="Dhaka · Verified buyer">ঢাকা · যাচাইকৃত ক্রেতা</small></div><span class="review-verified">✓ <span data-bn="যাচাইকৃত" data-en="Verified">যাচাইকৃত</span></span></div></article>
+          <article class="quote-card"><div class="rating">★★★★★</div><blockquote data-bn="“কাস্টমার সার্ভিস খুবই আন্তরিক ছিল। উপহার হিসেবে নিয়েছিলাম—যার জন্য, তার খুব পছন্দ হয়েছে।”" data-en="“Customer service was so thoughtful. I bought it as a gift, and they absolutely loved it.”">“কাস্টমার সার্ভিস খুবই আন্তরিক ছিল। উপহার হিসেবে নিয়েছিলাম—যার জন্য, তার খুব পছন্দ হয়েছে।”</blockquote><div class="reviewer"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt=""><div><b data-bn="আরিফ হাসান" data-en="Arif Hasan">আরিফ হাসান</b><small data-bn="চট্টগ্রাম · যাচাইকৃত ক্রেতা" data-en="Chattogram · Verified buyer">চট্টগ্রাম · যাচাইকৃত ক্রেতা</small></div><span class="review-verified">✓ <span data-bn="যাচাইকৃত" data-en="Verified">যাচাইকৃত</span></span></div></article>
+          <article class="quote-card"><div class="rating">★★★★★</div><blockquote data-bn="“মান আর দামের সমন্বয় অসাধারণ। এখন থেকে আমার পছন্দের অনলাইন শপ!”" data-en="“Such a lovely balance of quality and price. Definitely my new favorite online store!”">“মান আর দামের সমন্বয় অসাধারণ। এখন থেকে আমার পছন্দের অনলাইন শপ!”</blockquote><div class="reviewer"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt=""><div><b data-bn="তাসনিম তাবাসসুম" data-en="Tasnim Tabassum">তাসনিম তাবাসসুম</b><small data-bn="সিলেট · যাচাইকৃত ক্রেতা" data-en="Sylhet · Verified buyer">সিলেট · যাচাইকৃত ক্রেতা</small></div><span class="review-verified">✓ <span data-bn="যাচাইকৃত" data-en="Verified">যাচাইকৃত</span></span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Store statistics -->
+    <section class="numbers" aria-label="Nirvana by the numbers">
+      <div class="container number-grid">
+        <div><b>২,৫০০+</b><span data-bn="সন্তুষ্ট ক্রেতা" data-en="Happy customers">সন্তুষ্ট ক্রেতা</span></div>
+        <div><b>৪.৯/৫</b><span data-bn="গড় ক্রেতা রেটিং" data-en="Average customer rating">গড় ক্রেতা রেটিং</span></div>
+        <div><b>৫০+</b><span data-bn="শহরে ডেলিভারি" data-en="Cities served">শহরে ডেলিভারি</span></div>
+        <div><b>৭ দিন</b><span data-bn="সহজ রিটার্ন" data-en="Easy returns">সহজ রিটার্ন</span></div>
+      </div>
+    </section>
+
+    <!-- 12. Lifestyle gallery -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><div><span class="eyebrow" data-bn="জীবনের ছোট ছোট সুন্দর মুহূর্ত" data-en="The everyday, a little more lovely">জীবনের ছোট ছোট সুন্দর মুহূর্ত</span><h2 data-bn="আপনাদের Nirvana মুহূর্ত" data-en="Your Nirvana moments">আপনাদের Nirvana মুহূর্ত</h2></div><a class="text-link" href="#contact" data-bn="@nirvana.bd দেখুন →" data-en="Follow @nirvana.bd →">@nirvana.bd দেখুন →</a></div>
+        <div class="gallery-grid">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;w=750&amp;q=80" alt="Sunlit contemporary living room">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Classic watch detail">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Fresh red sneaker">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&amp;fit=crop&amp;w=650&amp;q=80" alt="Calm home decor">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Wireless headphones">
+          <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Botanical skincare products">
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. FAQ -->
+    <section class="section faq-section">
+      <div class="container faq-layout">
+        <div class="faq-intro"><span class="eyebrow" data-bn="সাহায্য লাগবে?" data-en="Need a hand?">সাহায্য লাগবে?</span><h2 data-bn="জানতে চাওয়ার মতো কিছু?" data-en="A few things you might be wondering.">জানতে চাওয়ার মতো কিছু?</h2><p data-bn="আপনার প্রশ্নের উত্তর এখানে না পেলে আমাদের সঙ্গে কথা বলুন—আমরা সাহায্য করতে প্রস্তুত।" data-en="Can't find what you need? Get in touch—we're always happy to help.">আপনার প্রশ্নের উত্তর এখানে না পেলে আমাদের সঙ্গে কথা বলুন—আমরা সাহায্য করতে প্রস্তুত।</p><a class="text-link" href="#contact" data-bn="আমাদের সঙ্গে কথা বলুন →" data-en="Talk to our team →">আমাদের সঙ্গে কথা বলুন →</a></div>
+        <div class="faq-list">
+          <details open><summary data-bn="কত দিনের মধ্যে অর্ডার পৌঁছাবে?" data-en="When will my order arrive?">কত দিনের মধ্যে অর্ডার পৌঁছাবে?</summary><p data-bn="ঢাকার ভেতরে সাধারণত ১–২ কর্মদিবস এবং ঢাকার বাইরে ২–৪ কর্মদিবসের মধ্যে পৌঁছে যায়।" data-en="Orders typically arrive within 1–2 business days in Dhaka and 2–4 business days elsewhere in Bangladesh.">ঢাকার ভেতরে সাধারণত ১–২ কর্মদিবস এবং ঢাকার বাইরে ২–৪ কর্মদিবসের মধ্যে পৌঁছে যায়।</p></details>
+          <details><summary data-bn="কীভাবে পণ্য ফেরত দেব?" data-en="How do I return an item?">কীভাবে পণ্য ফেরত দেব?</summary><p data-bn="ডেলিভারির ৭ দিনের মধ্যে অব্যবহৃত পণ্য মূল প্যাকেজিংসহ ফেরতের অনুরোধ করতে আমাদের সাপোর্টে যোগাযোগ করুন।" data-en="Contact our support team within 7 days of delivery. Items should be unused and in their original packaging.">ডেলিভারির ৭ দিনের মধ্যে অব্যবহৃত পণ্য মূল প্যাকেজিংসহ ফেরতের অনুরোধ করতে আমাদের সাপোর্টে যোগাযোগ করুন।</p></details>
+          <details><summary data-bn="কোন কোন পেমেন্ট পদ্ধতি আছে?" data-en="Which payment methods do you accept?">কোন কোন পেমেন্ট পদ্ধতি আছে?</summary><p data-bn="ক্যাশ অন ডেলিভারি, বিকাশ, নগদ এবং প্রধান ব্যাংক কার্ডের মাধ্যমে পেমেন্ট করতে পারবেন।" data-en="Pay with cash on delivery, bKash, Nagad or major bank cards.">ক্যাশ অন ডেলিভারি, বিকাশ, নগদ এবং প্রধান ব্যাংক কার্ডের মাধ্যমে পেমেন্ট করতে পারবেন।</p></details>
+          <details><summary data-bn="পণ্য কি ওয়ারেন্টিসহ আসে?" data-en="Do products come with a warranty?">পণ্য কি ওয়ারেন্টিসহ আসে?</summary><p data-bn="প্রযোজ্য পণ্যের ওয়ারেন্টির তথ্য পণ্যের বিবরণে উল্লেখ থাকে। কোনো প্রশ্নে আমাদের টিম সাহায্য করবে।" data-en="Warranty details are listed on each eligible product page. Our team is happy to help with any questions.">প্রযোজ্য পণ্যের ওয়ারেন্টির তথ্য পণ্যের বিবরণে উল্লেখ থাকে। কোনো প্রশ্নে আমাদের টিম সাহায্য করবে।</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. Newsletter -->
+    <section class="newsletter">
+      <div class="container newsletter-inner">
+        <div><h2 data-bn="ভালো জিনিসের খবর আগে পান।" data-en="A little good in your inbox.">ভালো জিনিসের খবর আগে পান।</h2><p data-bn="নতুন কালেকশন, বিশেষ অফার আর ভালো লাগার গল্প—মাঝে মাঝে, শুধু আপনার জন্য।" data-en="New collections, thoughtful offers and little stories—only when we have something lovely to share.">নতুন কালেকশন, বিশেষ অফার আর ভালো লাগার গল্প—মাঝে মাঝে, শুধু আপনার জন্য।</p></div>
+        <form class="newsletter-form" id="newsletterForm"><input type="email" name="email" required autocomplete="email" placeholder="আপনার ইমেইল ঠিকানা" aria-label="Email address" data-placeholder-bn="আপনার ইমেইল ঠিকানা" data-placeholder-en="Your email address"><button type="submit" data-bn="সাবস্ক্রাইব" data-en="Subscribe">সাবস্ক্রাইব</button></form>
+      </div>
+    </section>
+
+    <!-- 15. Contact -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="center-head"><span class="eyebrow" data-bn="আমরা আছি পাশে" data-en="Here when you need us">আমরা আছি পাশে</span><h2 data-bn="কথা বলতে চান?" data-en="Let's talk.">কথা বলতে চান?</h2><p data-bn="পণ্য, অর্ডার কিংবা শুধু একটু পরামর্শ—আমাদের টিমের সঙ্গে যোগাযোগ করুন।" data-en="Product question, order help or just a little advice? Our team is here for you.">পণ্য, অর্ডার কিংবা শুধু একটু পরামর্শ—আমাদের টিমের সঙ্গে যোগাযোগ করুন।</p></div>
+        <div class="contact-grid">
+          <div class="contact-card"><span>☎</span><b data-bn="ফোনে কথা বলুন" data-en="Give us a call">ফোনে কথা বলুন</b><p>+880 1700-000000<br><small data-bn="প্রতিদিন, সকাল ১০টা–সন্ধ্যা ৭টা" data-en="Daily, 10 am–7 pm">প্রতিদিন, সকাল ১০টা–সন্ধ্যা ৭টা</small></p></div>
+          <div class="contact-card"><span>✉</span><b data-bn="ইমেইল করুন" data-en="Send us an email">ইমেইল করুন</b><p>hello@nirvana.bd<br><small data-bn="সাধারণত এক কর্মদিবসের মধ্যে উত্তর দিই" data-en="We usually reply within one business day">সাধারণত এক কর্মদিবসের মধ্যে উত্তর দিই</small></p></div>
+          <div class="contact-card"><span>⌖</span><b data-bn="আমাদের ঠিকানা" data-en="Find our studio">আমাদের ঠিকানা</b><p><span data-bn="বনানী, ঢাকা, বাংলাদেশ" data-en="Banani, Dhaka, Bangladesh">বনানী, ঢাকা, বাংলাদেশ</span><br><small data-bn="সোম–শনি, সকাল ১০টা–সন্ধ্যা ৬টা" data-en="Sat–Thu, 10 am–6 pm">সোম–শনি, সকাল ১০টা–সন্ধ্যা ৬টা</small></p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 16. Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a class="brand" href="#home"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20c-4-3-7-6.2-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 3.8-3 7-7 10Z" stroke="currentColor" stroke-width="1.7"/><path d="M12 16c.2-3 1.4-5.1 3.5-6.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Nirvana</a><p data-bn="ভালোভাবে বেছে নেওয়া জিনিস, প্রতিদিনের জন্য। আপনার জীবনকে একটু সুন্দর করতেই আমাদের যাত্রা।" data-en="Thoughtfully chosen things for everyday living. Here to make the little moments feel a little lovelier.">ভালোভাবে বেছে নেওয়া জিনিস, প্রতিদিনের জন্য। আপনার জীবনকে একটু সুন্দর করতেই আমাদের যাত্রা।</p><div class="socials"><a href="#contact" aria-label="Instagram">ig</a><a href="#contact" aria-label="Facebook">fb</a><a href="#contact" aria-label="Pinterest">p</a></div></div>
+        <div class="footer-col"><h3 data-bn="ঘুরে দেখুন" data-en="Explore">ঘুরে দেখুন</h3><a href="#products" data-bn="সব পণ্য" data-en="All products">সব পণ্য</a><a href="#categories" data-bn="ক্যাটাগরি" data-en="Categories">ক্যাটাগরি</a><a href="#best" data-bn="বেস্টসেলার" data-en="Bestsellers">বেস্টসেলার</a><a href="#products" data-bn="নতুন কালেকশন" data-en="New arrivals">নতুন কালেকশন</a></div>
+        <div class="footer-col"><h3 data-bn="সহায়তা" data-en="Customer care">সহায়তা</h3><a href="#contact" data-bn="যোগাযোগ" data-en="Contact us">যোগাযোগ</a><a href="#contact" data-bn="ডেলিভারি তথ্য" data-en="Shipping information">ডেলিভারি তথ্য</a><a href="#contact" data-bn="রিটার্ন ও রিফান্ড" data-en="Returns & refunds">রিটার্ন ও রিফান্ড</a><a href="#contact" data-bn="গোপনীয়তা নীতি" data-en="Privacy policy">গোপনীয়তা নীতি</a></div>
+        <div class="footer-col"><h3 data-bn="যোগাযোগ" data-en="Get in touch">যোগাযোগ</h3><a href="mailto:hello@nirvana.bd">hello@nirvana.bd</a><a href="tel:+8801700000000">+880 1700-000000</a><a href="#contact" data-bn="ঢাকা, বাংলাদেশ" data-en="Dhaka, Bangladesh">ঢাকা, বাংলাদেশ</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2025 Nirvana. <span data-bn="সর্বস্বত্ব সংরক্ষিত।" data-en="All rights reserved.">সর্বস্বত্ব সংরক্ষিত।</span></span><span data-bn="ভালোবাসা দিয়ে তৈরি, বাংলাদেশে।" data-en="Made with care in Bangladesh.">ভালোবাসা দিয়ে তৈরি, বাংলাদেশে।</span></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      var currentLanguage = "bn";
+      var cartCount = 0;
+      var toastTimer;
+      var menuButton = document.getElementById("menuButton");
+      var navLinks = document.getElementById("navLinks");
+      var toast = document.getElementById("toast");
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(function () { toast.classList.remove("show"); }, 2600);
+      }
+
+      document.getElementById("languageToggle").addEventListener("click", function () {
+        currentLanguage = currentLanguage === "bn" ? "en" : "bn";
+        document.documentElement.lang = currentLanguage;
+        document.title = currentLanguage === "bn" ? "Nirvana — ভালো থাকার প্রতিদিন" : "Nirvana — A little better, every day";
+        document.querySelectorAll("[data-bn][data-en]").forEach(function (element) {
+          element.innerHTML = element.getAttribute("data-" + currentLanguage);
+        });
+        document.querySelectorAll("[data-placeholder-bn][data-placeholder-en]").forEach(function (element) {
+          element.placeholder = element.getAttribute("data-placeholder-" + currentLanguage);
+        });
+        document.getElementById("languageToggle").textContent = currentLanguage === "bn" ? "English" : "বাংলা";
+        document.getElementById("languageToggle").setAttribute("aria-label", currentLanguage === "bn" ? "Switch to English" : "বাংলায় পরিবর্তন করুন");
+        document.querySelectorAll(".add-btn-wide").forEach(function (button) {
+          button.textContent = button.getAttribute("data-" + currentLanguage);
+        });
+      });
+
+      menuButton.addEventListener("click", function () {
+        var isOpen = navLinks.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+      });
+      navLinks.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          navLinks.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      document.querySelectorAll(".add-btn, .add-btn-wide").forEach(function (button) {
+        button.addEventListener("click", function () {
+          cartCount += 1;
+          document.getElementById("cartCount").textContent = String(cartCount);
+          var product = currentLanguage === "bn" ? button.getAttribute("data-product") : button.getAttribute("data-product-en");
+          showToast(currentLanguage === "bn" ? product + " কার্টে যোগ হয়েছে" : product + " added to your cart");
+        });
+      });
+
+      document.querySelectorAll(".wish").forEach(function (button) {
+        button.addEventListener("click", function () {
+          button.classList.toggle("active");
+          button.textContent = button.classList.contains("active") ? "♥" : "♡";
+          showToast(currentLanguage === "bn" ? (button.classList.contains("active") ? "পছন্দের তালিকায় যোগ হয়েছে" : "পছন্দের তালিকা থেকে সরানো হয়েছে") : (button.classList.contains("active") ? "Added to your wishlist" : "Removed from your wishlist"));
+        });
+      });
+
+      document.getElementById("cartButton").addEventListener("click", function () {
+        showToast(currentLanguage === "bn" ? "আপনার কার্টে " + cartCount + "টি পণ্য আছে" : "Your cart has " + cartCount + (cartCount === 1 ? " item" : " items"));
+      });
+
+      document.getElementById("newsletterForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        var input = event.currentTarget.querySelector("input");
+        showToast(currentLanguage === "bn" ? "সাবস্ক্রাইব করার জন্য ধন্যবাদ!" : "Thanks for subscribing!");
+        input.value = "";
+      });
+    }());
+  </script>
+</body>
+</html>
